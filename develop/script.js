@@ -26,7 +26,7 @@ var descFive = document.querySelector('#descFive')
 
 
 
-
+// eventlistner for the search button runs the fetch function. 
 searchButton.addEventListener('click', function (e) {
     e.preventDefault();
     fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + cityName.value + '&appid=' + apiKey+ '&units=imperial')
@@ -55,11 +55,22 @@ searchButton.addEventListener('click', function (e) {
             descFive.innerHTML = data['list'][32]['weather'][0]['description']
         })
         .catch(err => alert("wrong city name!"))
+        searchHistory();
 
 })
+// function to set searched citys to local storage. 
+function searchHistory(){
+localStorage.setItem('city-name', JSON.stringify(cityName.value));
+}
 
 
-
+// function to display searched citys on the page from local storage.
+function showHistory(){
+    var searchHistory = localStorage.getItem('city-name')
+    var historyButton = document.createElement('button')
+    searchHistory.append(historyButton)
+    historyButton.textContent = searchHistory;
+}
 
 
 
