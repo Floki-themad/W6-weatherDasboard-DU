@@ -28,7 +28,25 @@ function getData(inputCity){
                             $("#current-city").html(foundLocation);
                             $("#current-date").html("(Today: " + today.format("l") + ")");
                             $("#current-icon").attr("src", "http://openweathermap.org/img/wn/" + data.current.weather[0].icon + "@2.png");
-                            $("#current-temp").html
+                            $("#current-temp").html(data.current.temp + "F");
+                            $("#current-wind").html(data.current.wind_speed + "mph")
+                            $("#current-humidity").html(data.current.humidity + "%");
+                            $("#current-index").html(data.current.uvi);
+                            colorUvi(data.current.uvi);
+
+                            for(let index = 1; index <= 5; index++){
+                                let dayId = "";
+                                dayId = "#day" + i + "-date";
+                                $(dayId).html(today.add(1, 'd').format("l"));
+                                dayId = "#day" + i + "-icon";
+                                $(dayId).attr("src", "http://openweathermap.org/img/wn/" + data.daily[i].weather[0].icon + "@2x.png");
+                                dayId = "#day" + i + "-temp";
+                                $(dayId).html(data.daily[i].temp.max + "°F");
+                                dayId = "#day" + i + "-wind";
+                                $(dayId).html(data.daily[i].wind_speed + " mph");
+                                dayId = "#day" + i + "-humidity";
+                                $(dayId).html(data.daily[i].humidity + " %");
+                              }
                         })
                     }
                 }
