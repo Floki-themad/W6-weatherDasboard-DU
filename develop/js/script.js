@@ -1,5 +1,5 @@
 var apiKey = 'c7dc3dc5930fbf4151b143bc06889fef'
-//let today = moment();
+let today = moment();
 var location = document.getElementById("city-name");
 const searchLocation = document.getElementById("search-city");
 const cityArr = [];
@@ -47,7 +47,7 @@ function getData(inputCity){
                                 dayId = "#day" + i + "-humidity";
                                 $(dayId).html(data.daily[i].humidity + " %");
                               }
-                              //today = moment();
+                              today = moment();
                               if(!cityArr.includes(foundLocation)){
                                   const newButton = document.createElement('button');
                                   newButton.classList.add("form-control");
