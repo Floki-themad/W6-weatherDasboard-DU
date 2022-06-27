@@ -87,8 +87,13 @@ function uvColor(uvIndex){
         $("#current-index").attr("style", "background-color: purple;");
     }
 }
-// convert api data to lat/lon
 
+function init(){
+    localStorage.clear();
+    getData("Denver");
+};
+
+init();
 
 
 
