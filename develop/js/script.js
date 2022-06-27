@@ -1,6 +1,6 @@
 var apiKey = 'c7dc3dc5930fbf4151b143bc06889fef'
-let today = moment();
-const location = document.getElementById("city-name");
+//let today = moment();
+var location = document.getElementById("city-name");
 const searchLocation = document.getElementById("search-city");
 const cityArr = [];
 
@@ -22,7 +22,7 @@ function getData(inputCity){
                         fetch(newApiUrl)
                         .then(function(response){
                             return response.json();
-                        });
+                        })
                         .then(function(data){
                             console.log(data);
                             $("#current-city").html(foundLocation);
@@ -47,7 +47,7 @@ function getData(inputCity){
                                 dayId = "#day" + i + "-humidity";
                                 $(dayId).html(data.daily[i].humidity + " %");
                               }
-                              today = moment();
+                              //today = moment();
                               if(!cityArr.includes(foundLocation)){
                                   const newButton = document.createElement('button');
                                   newButton.classList.add("form-control");
@@ -94,6 +94,22 @@ function init(){
 };
 
 init();
+
+$('#search-button').on('click', function (event) {
+    event.preventDefault();
+    const city = cityName.value;
+    console.log(city);
+    if (city) {
+      getApiData(city);
+    }
+  });
+  
+  $('#search-city').on('click', function (event) {
+    event.preventDefault();
+    const tempElement = event.target;
+    const city = tempElement.textContent;
+    getApiData(city);
+  });
 
 
 
