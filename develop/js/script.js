@@ -32,7 +32,7 @@ function getData(inputCity){
                             $("#current-wind").html(data.current.wind_speed + "mph")
                             $("#current-humidity").html(data.current.humidity + "%");
                             $("#current-index").html(data.current.uvi);
-                            colorUvi(data.current.uvi);
+                            uvColor(data.current.uvi);
 
                             for(let index = 1; index <= 5; index++){
                                 let dayId = "";
@@ -68,6 +68,24 @@ function getData(inputCity){
             });
         }
     });
+}
+
+function uvColor(uvIndex){
+    if (uvIndex <= 2){
+        $("#current-index").attr("style", "background-color: green;");
+    }
+    if((uvIndex > 2) && (uvIndex <= 5)){
+        $("#current-index").attr("style", "background-color: yellow;");
+    }
+    if((uvIndex > 5) && (uvIndex <= 7)){
+        $("#current-index").attr("style", "background-color: orange;");
+    }
+    if((uvIndex > 7) && (uvIndex <= 10)){
+        $("#current-index").attr("style", "background-color: red;");
+    }
+    if((uvIndex > 10)){
+        $("#current-index").attr("style", "background-color: purple;");
+    }
 }
 // convert api data to lat/lon
 
