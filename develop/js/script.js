@@ -47,12 +47,27 @@ function getData(inputCity){
                                 dayId = "#day" + i + "-humidity";
                                 $(dayId).html(data.daily[i].humidity + " %");
                               }
-                        })
+                              today = moment();
+                              if(!cityArr.includes(foundLocation)){
+                                  const newButton = document.createElement('button');
+                                  newButton.classList.add("form-control");
+                                  newButton.classList.add("btn");
+                                  newButton.classList.add("btn-secondary");
+                                  newButton.classList.add("add-space");
+                                  newButton.textContent = foundLocation;
+                                  searchLocation.appendChild(newButton);
+                                  cityArr.push(foundLocation);
+                                  localStorage.setItem("location", JSON.stringify(cityArr));
+                              }
+                        });
+                    }else{
+                        alert("That location not on this Planet!")
                     }
                 }
-            })
+                
+            });
         }
-    })
+    });
 }
 // convert api data to lat/lon
 
